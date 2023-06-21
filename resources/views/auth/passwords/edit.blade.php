@@ -10,17 +10,18 @@
 
             <div class="card-body">
                 <div class="row  m-1">
-                    <span>Who are same departments....</span>
+                    @if (count($users) > 0)
+                        <span>Who are same departments....</span>
+                    @else
+                        <span>There is no staff in these department except you.</span>
+                    @endif
                     @foreach ($users as $key => $user)
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-2">
                             {{ ++$key }}. <span>{{ $user->name ?? '' }} ( {{ $user->phone }} )</span>
                         </div>
                     @endforeach
                 </div>
-                
-                @if (count($users) == 0)
-                    <small>There is no staff in these department except you.</small>
-                @endif
+
                 <div class="row">
                     <h5 class="required my-3" for="permissions">{{ trans('cruds.role.fields.permissions') }}</h5>
                     @foreach ($permissions as $key => $permission)
@@ -37,7 +38,7 @@
                         </div>
                     @endforeach
                     @if (count($permissions) == 0)
-                        <small>There is no permission for your department.</small>
+                        <span>There is no permission for your department.</span>
                     @endif
                 </div>
             </div>
