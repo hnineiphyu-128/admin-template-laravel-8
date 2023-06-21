@@ -63,7 +63,7 @@ class UsersController extends Controller
         // dd($apps);
         $user->load('roles');
 
-        return view('admin.users.edit', compact('roles', 'parents'));
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
