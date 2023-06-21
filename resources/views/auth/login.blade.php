@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Z</title>
+    <title>{{ trans('panel.site_title') }}</title>
 
     <meta name="description" content="" />
 
@@ -128,7 +128,7 @@
             <!-- /Logo -->
 
             <div class="card-body mt-2">
-              <h4 class="mb-2 fw-semibold">Welcome to Z! 👋</h4>
+              <h4 class="mb-2 fw-semibold">Welcome to {{ trans('panel.site_title') }}! 👋</h4>
               {{-- <p class="mb-4">Please sign-in to your account and start the adventure</p> --}}
 
               <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">

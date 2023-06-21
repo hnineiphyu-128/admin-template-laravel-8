@@ -28,10 +28,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('users/getparentusersbyroleid', 'UsersController@getparentusersbyroleid')->name('users.getparentusersbyroleid');
     Route::resource('users', 'UsersController');
 
-    // Reservations
-    Route::delete('reservations/destroy', 'ReservationsController@massDestroy')->name('reservations.massDestroy');
-    Route::resource('reservations', 'ReservationsController');
-
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

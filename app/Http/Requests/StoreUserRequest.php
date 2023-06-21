@@ -23,18 +23,11 @@ class StoreUserRequest extends FormRequest
             ],
             'phone' => [
                 'required',
-                'unique:users.phone,NULL,id,deleted_at,NULL',
+                'unique:users,phone'
             ],
             'password' => [
                 'required',
-            ],
-            // 'roles.*' => [
-            //     'integer',
-            // ],
-            // 'roles' => [
-            //     'required',
-            //     'array',
-            // ],
+            ]
         ];
     }
 }

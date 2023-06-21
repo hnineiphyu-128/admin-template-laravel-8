@@ -68,9 +68,6 @@ class UsersController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        if ($request->role == 1 && isset($request->ref_code)) {
-            $request['ref_code'] = 0;
-        }
         $user->update($request->all());
         $user->roles()->sync($request->role);
 

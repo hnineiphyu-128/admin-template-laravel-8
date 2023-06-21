@@ -74,14 +74,14 @@
               @endcan
               
               {{-- Reservation --}}
-              @can('reservation_access')
+              {{-- @can('reservation_access')
                   <li class="menu-item {{ request()->is('admin/reservations') || request()->is('admin/reservations/*') ? 'active' : '' }}">
                     <a href="{{ route('admin.reservations.index') }}" class="menu-link">
                       <i class="menu-icon tf-icons fas fa-th-list fa-xs"></i>
                       <div data-i18n="{{ trans('cruds.reservation.title') }}">{{ trans('cruds.reservation.title') }}</div>
                     </a>
                   </li>
-                @endcan
+                @endcan --}}
 
               {{-- profile password --}}
               @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
@@ -89,7 +89,7 @@
                   <li class="menu-item {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}">
                     <a href="{{ route('profile.password.edit') }}" class="menu-link">
                       <i class="menu-icon tf-icons fas fa-key fa-xs"></i>
-                      <div data-i18n="{{ trans('global.change_password') }}">{{ trans('global.change_password') }}</div>
+                      <div data-i18n="{{ trans('global.profile_information') }}">{{ trans('global.profile_information') }}</div>
                     </a>
                   </li>
                 @endcan

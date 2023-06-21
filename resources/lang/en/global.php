@@ -138,6 +138,7 @@ return [
     'change_notifications_field_2_label'   => 'When Entry on CRUD',
     'my_profile'                           => 'My profile',
     'my_team'                              => 'My team',
+    'change_infomation'                    => 'Change infomation',
     'change_password'                      => 'Change password',
     'delete_account'                       => 'Delete account',
     'delete_account_warning'               => 'Enter your email address to confirm you want to delete account.\nThis action is not reversible.',
