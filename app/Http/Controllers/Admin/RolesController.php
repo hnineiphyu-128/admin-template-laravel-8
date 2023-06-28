@@ -73,7 +73,7 @@ class RolesController extends Controller
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $role->update($request->all());
-        
+
         $permissions = [];
         if(count($request->input('permissions', [])) > 0) {
             foreach ($request->input('permissions') as $key => $value) {

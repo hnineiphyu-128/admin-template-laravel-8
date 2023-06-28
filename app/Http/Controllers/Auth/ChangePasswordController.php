@@ -17,9 +17,13 @@ class ChangePasswordController extends Controller
     public function edit()
     {
         abort_if(Gate::denies('profile_password_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $users = User::with(['roles'])->where('id', '<>', auth()->user()->id)->whereRelation('roles', 'id', auth()->user()->roles[0]->id)->get();
-        $permissionIds = DB::table('permission_role')->where('role_id', auth()->user()->roles[0]->id)->pluck('permission_id')->toArray();
+        $user_roles = DB::table('role_user')->where('user_id', auth()->user()->id)->pluck('role_id')->toArray();
+        $users = User::whereHas('roles', function ($query) use ($user_roles) {
+            $query->whereIn('id', $user_roles);
+        })
+        ->where('id', '<>', auth()->user()->id)
+        ->get();
+        $permissionIds = DB::table('permission_role')->whereIn('role_id', $user_roles)->pluck('permission_id')->toArray();
         $permissions = Permission::whereIn('id', $permissionIds)->get();
 
         return view('auth.passwords.edit', compact('users', 'permissions'));

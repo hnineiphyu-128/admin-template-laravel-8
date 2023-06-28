@@ -45,8 +45,9 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+        // dd($request->all());
         $user = User::create($request->all());
-        $user->roles()->sync($request->role);
+        $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index');
     }
@@ -68,8 +69,9 @@ class UsersController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
+        // dd($request->all());
         $user->update($request->all());
-        $user->roles()->sync($request->role);
+        $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index');
     }
@@ -97,27 +99,5 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    /**
-     * get parent users lists by role id
-     */
-    public function getparentusersbyroleid()
-    {
-        $app_id = request()->app_id;
-        $role_id = (int)request()->role_id;
-        if (!helper::isMainRole($role_id)) {
-            return false;
-        }
-        $parents = User::query();
-        if ($app_id != '' && $app_id != 0) {
-            $parents->where('app_id', $app_id);
-        }
-        $parents->whereHas('roles', function ($query) use ($role_id)
-        {
-            $parent_role_id = $role_id - 1;
-            $query->where('id', $parent_role_id);
-        });
-        return $parents->get();
     }
 }

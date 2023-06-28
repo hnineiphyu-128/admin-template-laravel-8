@@ -67,8 +67,8 @@
                             @foreach ($roles as $role)
                                 <div class="col-md-4 col-6 mb-2">
                                     <div class="form-check">
-                                        <input type="radio" name="role" id="{{ $role->title }}"  value="{{ $role->id }}"class="form-check-input"
-                                        @if ($user->roles[0]->id == $role->id)
+                                        <input type="checkbox" name="roles[]" id="{{ $role->title }}"  value="{{ $role->id }}"class="form-check-input"
+                                        @if (\App\Helpers\helper::hasRole($role->id, $user->roles))
                                             checked
                                         @endif
                                         onclick="filterParent({{ $role->id }})">
@@ -119,14 +119,14 @@
             type: "get",
             url: "/admin/users/getparentusersbyroleid?role_id=" + role_id + "&app_id=" + app_id,
             success: function(res) {
-                var parents = res;                
+                var parents = res;
                 if (parents) {
                     var text = '';
                     var i = 1;
                     $('#parent_id option').remove();
                     let html = `<option value=""> {{ trans('global.pleaseSelect') }} </option>`;
                     parents.forEach((item,i)=>{
-                        
+
                         html += `
                                     <option value="${item.id}"> ${item.name} </option>
                                 `;

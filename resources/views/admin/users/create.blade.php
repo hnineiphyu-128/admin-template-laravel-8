@@ -66,7 +66,7 @@
                             @foreach ($roles as $role)
                                 <div class="col-md-4 col-6 mb-2">
                                     <div class="form-check">
-                                        <input type="radio" name="role" id="{{ $role->title }}"  value="{{ $role->id }}"class="form-check-input" onclick="filterParent({{ $role->id }})">
+                                        <input type="checkbox" name="roles[]" id="{{ $role->title }}"  value="{{ $role->id }}"class="form-check-input" onclick="filterParent({{ $role->id }})">
                                         <label for="{{ $role->title }}" class="form-check-label"><span style="font-size: 0.9rem; font-weight:bold">{{ $role->title }}</span>
                                         </label>
                                     </div>
@@ -121,7 +121,7 @@
                     $('#parent_id option').remove();
                     let html = `<option value=""> {{ trans('global.pleaseSelect') }} </option>`;
                     parents.forEach((item,i)=>{
-                        
+
                         html += `
                                     <option value="${item.id}"> ${item.name} </option>
                                 `;
